@@ -8,16 +8,17 @@ function changer(folder) {
         if(folders.length !== 2) {
             console.log('It should be only two folders')
         } else {
-            fs.readdir(path.join(targetFolder, folders[0]), (err, files) => {
+            const [first, second] = folders;
+            fs.readdir(path.join(targetFolder, first), (err, files) => {
                 console.log(files);
                 for (let file of files) {
-                    fs.rename(path.join(targetFolder, folders[0], file), path.join(targetFolder, folders[1], file), err => {console.log(err)})
+                    fs.rename(path.join(targetFolder, first, file), path.join(targetFolder, second, file), err => {console.log(err)})
                 }
             });
-            fs.readdir(path.join(targetFolder, folders[1]), (err, files) => {
+            fs.readdir(path.join(targetFolder, second), (err, files) => {
                 console.log(files);
                 for (let file of files) {
-                    fs.rename(path.join(targetFolder, folders[1], file), path.join(targetFolder, folders[0], file), err => {console.log(err)})
+                    fs.rename(path.join(targetFolder, second, file), path.join(targetFolder, first, file), err => {console.log(err)})
                 }
             });
     }});
