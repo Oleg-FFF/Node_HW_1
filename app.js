@@ -6,8 +6,9 @@ function changer(folder) {
     fs.readdir(path.join(targetFolder), (err, folders) => {
         console.log(folders);
         if(folders.length !== 2) {
-            console.log('It should be only two folders')
-        } else {
+            console.log('It should be only two folders');
+            return
+        }
             const [first, second] = folders;
             fs.readdir(path.join(targetFolder, first), (err, files) => {
                 console.log(files);
@@ -21,6 +22,6 @@ function changer(folder) {
                     fs.rename(path.join(targetFolder, second, file), path.join(targetFolder, first, file), err => {console.log(err)})
                 }
             });
-    }});
+    });
 }
 changer('groups');
